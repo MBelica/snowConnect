@@ -1,0 +1,61 @@
+<!--
+  Generated template for the TrackingDebugPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle (click)="menuToggleClass()">
+      <div id="menu-toggle" class="menu-toggle" > <div id="menu-hamburger"> <span></span> <span></span> <span></span> </div> <div id="menu-cross">  <span></span>  <span></span> </div> </div>
+    </button>
+
+    <!--<ion-title>{{ 'TRACKER_TITLE' | translate }}</ion-title>-->
+
+    <ion-buttons end>
+      <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="bglayer"></div>
+
+  <div padding style="margin-top:10px">
+    <span style="font-size: 1.75rem; margin-top: 1.6rem; font-weight: 300; line-height: 1.2;">GPS-Module's Stats</span>
+    <ion-item-divider sticky>
+      <ion-label>
+        Current Latitude: {{location.lat}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-item-divider sticky>
+      <ion-label>
+        Current Longitude: {{location.lng}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-item-divider sticky>
+      <ion-label>
+        Current Accuracy: {{location.acc}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-item-divider sticky>
+      <ion-label>
+        Current Altitude: {{location.alt}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-item-divider sticky>
+      <ion-label>
+        Current Altitude Accuracy: {{location.alc}}
+      </ion-label>
+    </ion-item-divider>
+    <ion-item-divider sticky>
+      <ion-label>
+        Current Speed: {{location.gpsSpd}}
+      </ion-label>
+    </ion-item-divider>
+  </div>
+
+</ion-content>

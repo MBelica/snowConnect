@@ -1,0 +1,180 @@
+<!--
+  Generated template for the TrackerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle (click)="menuToggleClass()">
+      <div id="menu-toggle" class="menu-toggle" > <div id="menu-hamburger"> <span></span> <span></span> <span></span> </div> <div id="menu-cross">  <span></span>  <span></span> </div> </div>
+    </button>
+
+    <!--<ion-title>{{ 'TRACKER_TITLE' | translate }}</ion-title>-->
+
+    <ion-buttons end>
+      <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="bglayer"></div>
+  <div padding>
+   <!-- <span *ngIf=" location.isRunning != true " isActive="false" style="text-align:right; float: right; padding-right: 12px;"><ion-icon name="md-radio-button-off" style="font-size: 14px; color: black; opacity:0.75;"></ion-icon></span>
+    <span *ngIf=" location.isRunning == true " isActive="false" style="text-align:right; float: right; padding-right: 12px;"><ion-icon name="md-radio-button-on" style="font-size: 14px; color: black; opacity:0.75;"></ion-icon></span>
+  -->  <div id="currentSpeed">
+          <div class="outer-circ pulse">
+              <div class="inner-circ ">
+                  <div class="topspeed-label speed">2{{location.spd}}</div>
+                  <div class="topspeed-label unit">km/h</div>
+              </div>
+          </div>
+      </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button full primary (click)="start()">Start</button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button full primary (click)="stop()">Stop</button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button full primary (click)="reset()">Reset</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div padding style="margin-top:10px">
+    <span style="font-size: 1.75rem; margin-top: 1.6rem; font-weight: 300; line-height: 1.2;">Current Session's</span>
+    <ion-grid padding>
+      <ion-row>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Max Speed: {{stats.sessionStats['topSpeed']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Distance: {{stats.sessionStats['distance']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Start: {{stats.sessionStats['start']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              End: {{stats.sessionStats['end']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Calories: {{stats.sessionStats['calories']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-9>
+          <ion-item-divider sticky>
+            <ion-label>Positions: {{stats.sessionStats['tpositions']}}</ion-label>
+          </ion-item-divider>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <span style="font-size: 1.75rem; margin-top: 1.6rem; font-weight: 300; line-height: 1.2;">Day's ({{stats.dayStats['date']}})</span>
+    <ion-grid padding>
+      <ion-row>
+        <ion-col col-4>
+          <ion-item-divider sticky>
+            <ion-label>
+              Max Speed: {{stats.dayStats['topSpeed']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item-divider sticky>
+            <ion-label>
+              Distance: {{stats.dayStats['distance']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item-divider sticky>
+            <ion-label>
+              Calories: {{stats.dayStats['calories']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <ion-item-divider sticky>
+            <ion-label>
+              Time: {{stats.dayStats['time']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-8>
+          <ion-item-divider sticky>
+            <ion-label>
+              Positions: {{stats.dayStats['tpositions']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <span style="font-size: 1.75rem; margin-top: 1.6rem; font-weight: 300; line-height: 1.2;">Total's</span>
+    <ion-grid padding>
+      <ion-row>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Max Speed: {{stats.totalStats['topSpeed']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Distance: {{stats.totalStats['distance']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Calories: {{stats.totalStats['calories']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item-divider sticky>
+            <ion-label>
+              Time: {{stats.totalStats['time']}}
+            </ion-label>
+          </ion-item-divider>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
