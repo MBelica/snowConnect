@@ -3,8 +3,6 @@ import { Events, MenuController, Nav, Platform, Config }  from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { BackgroundGeolocation, BackgroundGeolocationConfig } from '@ionic-native/background-geolocation';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 
 import { CardsPage } from '../pages/cards/cards';
 import { ContentPage } from '../pages/content/content';
@@ -17,7 +15,6 @@ import { SearchPage } from '../pages/search/search';
 import { SettingsPage } from '../pages/settings/settings';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
-import { TrackingSpeed } from '../pages/tracking-speed/tracking-speed';
 import { TrackingPage } from '../pages/tracking/tracking';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -104,9 +101,10 @@ export class snowConnect {
   }
 
   menuClosed () {
-  document.querySelector('.menu-toggle').classList.remove('open');
 
-}
+    var menutoggle = document.querySelector('.menu-toggle');
+    if (menutoggle !== null) menutoggle.classList.remove('open');
+  }
 
   initTranslate() {
     // Set the default language for translation strings, and the current language.

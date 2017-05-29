@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { File } from '@ionic-native/file';
 
@@ -25,7 +24,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class nStorage {
 
-    constructor(private http: Http, private storage: Storage, private debug: Debug, private file: File) {
+    constructor(private storage: Storage, private debug: Debug, private file: File) {
       //
     }
 

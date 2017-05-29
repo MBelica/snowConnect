@@ -31,7 +31,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { Api } from '../providers/api';
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/settings';
-import { User } from '../providers/user';
+import { UserProvider } from '../providers/user';
 import { LocationProvider } from "../providers/location";
 import { StatsProvider } from "../providers/stats";
 import { nStorage } from '../providers/nstorage';
@@ -107,13 +107,13 @@ export function providers() {
         Api,
         BackgroundGeolocation,
         Items,
-        User,
         Camera,
         GoogleMaps,
         InAppBrowser,
         SplashScreen,
         StatusBar,
         Geolocation,
+        UserProvider,
         LocationProvider,
         StatsProvider,
         nStorage,

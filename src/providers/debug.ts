@@ -16,6 +16,10 @@ export class Debug {
 
   protected DEBUG_LEVEL: number = 5;
 
+  // todo create something to upload file
+  // todo create push service for errors and debugging etc. (background)
+  // todo create method for toast messages
+
   constructor(public http: Http) {
 
   }
