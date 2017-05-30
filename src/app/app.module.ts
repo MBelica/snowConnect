@@ -34,7 +34,6 @@ import { Settings } from '../providers/settings';
 import { UserProvider } from '../providers/user';
 import { LocationProvider } from "../providers/location";
 import { StatsProvider } from "../providers/stats";
-import { nStorage } from '../providers/nstorage';
 import { Debug } from '../providers/debug';
 
 import { Camera } from '@ionic-native/camera';
@@ -116,7 +115,6 @@ export function providers() {
         UserProvider,
         LocationProvider,
         StatsProvider,
-        nStorage,
         Debug,
 
         { provide: Settings, useFactory: provideSettings, deps: [Storage] },

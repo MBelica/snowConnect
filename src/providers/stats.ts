@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Debug } from '../providers/debug';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 
@@ -60,7 +61,7 @@ export class StatsProvider {
     private static tempDay: any = {topSpeed: 0, distance: 0, calories: 0, positions: [], tpositions: '', time: 0, date: 0};
 
 
-    constructor(public storage: Storage) {
+    constructor(public storage: Storage, public debug: Debug) {
 
         this.today = this.dateObj.getUTCFullYear() + "/" + (this.dateObj.getUTCMonth() + 1) + "/" + this.dateObj.getUTCDate();
         StatsProvider.allStatsInstances.push(this);
@@ -76,37 +77,38 @@ export class StatsProvider {
     saveData = function(key: any) { // todo save on disc
 
         if (key = 'total') { // totalStats
-            this.storage.ready().then(() => {
-
-                this.storage.set( 'personalStats_totalRecords', this.totalStats );
-            });
+            this.storage.set('personalStats_totalRecords', this.totalStats).then( () => this.debug.log('personalStats_totalRecords saved'),
+                error => console.error('Error storing item', error) );
         }
         else if (key = 'day') { // dayStats
-            this.storage.ready().then(() => {
-
-                this.storage.set( 'personalStats_dayRecords', this.dayStats );
-            });
+            this.storage.set('personalStats_dayRecords', this.dayStats).then( () => this.debug.log('personalStats_dayRecords saved'),
+                error => console.error('Error storing item', error) );
         }
     };
 
 
     fetchData ( )  {
-        var resultTotal = this.storage.get('personalStats_totalRecords');
-        if (resultTotal === null) {
-            this.totalStats  = StatsProvider.tempTotal;
-            this.saveData( 'total' );
-        } else this.totalStats = resultTotal;
 
-        var resultDay = this.storage.get('personalStats_dayRecords');
-        if (resultDay === null) {
-            this.dayStats = StatsProvider.tempDay;
-            this.saveData( 'day' );
-        } else {
-            if (this.dayStats['date'] != this.today) {
-              this.createBackup('day', this.dayStats);
-              this.resetDay();
-            } else this.dayStats = resultDay;
-        }
+        this.storage.get('personalStats_totalRecords').then( data =>  {
+            if (data === null) {
+                this.totalStats  = StatsProvider.tempTotal;
+                this.saveData( 'total' );
+            } else this.totalStats = data;
+        }, error => console.error(error) );
+
+        this.storage.get('personalStats_dayRecords').then( data =>  {
+            if (data === null) {
+                this.dayStats = StatsProvider.tempDay;
+                this.saveData( 'day' );
+            } else {
+                if (this.dayStats['date'] != this.today) {
+                    this.createBackup('day', this.dayStats);
+                    this.resetDay();
+                } else this.dayStats = data;
+            }
+        }, error => console.error(error) );
+
+        return true;
     };
 
 

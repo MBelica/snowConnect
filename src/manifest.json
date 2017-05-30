@@ -1,6 +1,6 @@
 {
-  "name": "SnowConnect",
-  "short_name": "snowConnect",
+  "name": "Ionic",
+  "short_name": "Ionic",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

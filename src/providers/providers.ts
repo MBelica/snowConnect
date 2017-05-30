@@ -3,7 +3,6 @@ import { Settings } from './settings';
 import { Api } from './api';
 import { UserProvider } from './user';
 import { Items } from '../mocks/providers/items';
-import { nStorage } from './nstorage';
 import { StatsProvider } from './stats';
 import { LocationProvider } from './location';
 
@@ -13,7 +12,6 @@ export {
     Api,
     UserProvider,
     Items,
-    nStorage,
     StatsProvider,
     LocationProvider
 };

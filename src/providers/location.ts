@@ -1,9 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
 import { BackgroundGeolocation, BackgroundGeolocationConfig } from '@ionic-native/background-geolocation';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { Debug } from './debug';
 import { StatsProvider } from './stats';
 import { Storage } from '@ionic/storage';
-import { Debug } from './debug';
 import { Platform } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
@@ -55,8 +55,7 @@ export class LocationProvider {
         if (!this.statsLoaded) {
             this.debug.log('stats not loaded yet, give it a sec.');
             return;
-        }
-        else if (this.isRunning) {
+        } else if (this.isRunning) {
             this.debug.log('already running');
             return;
         }
@@ -115,7 +114,7 @@ export class LocationProvider {
                 this.zone.run(() => {
                     var timestamp = new Date().getTime();
                     var dtsp      = (Math.round(timestamp - this.tsp) / 1000);
-                    if (dtsp  > 0.5 ) {
+                    if ( dtsp  > 0.5 ) {
                         this.debug.log('Geolocation (lat,long): ' + position.coords.latitude + ',' + position.coords.longitude);
                         this.debug.log('Geolocation (alt,spd): '  + position.coords.altitude + ',' + position.coords.speed);
                         this.handlePosChange(position.coords.latitude,
